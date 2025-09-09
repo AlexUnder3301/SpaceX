@@ -7,7 +7,7 @@ export interface LaunchType {
 }
 
 export interface StateType {
-    currentLaunch: LaunchType,
+    currentLaunch: LaunchType | null,
     showModal: boolean,
     launches: LaunchType[],
     isLoading: boolean

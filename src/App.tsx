@@ -36,7 +36,7 @@ const reducer = (state: StateType, {type, payload}: ReducerActionType) => {
 }
 
 const initialState = {
-  currentLaunch: {},
+  currentLaunch: null,
   showModal: false,
   launches: [],
   isLoading: true
@@ -51,6 +51,7 @@ function App() {
   const getData = async () => {
     const data = await ky.get('https://api.spacexdata.com/v3/launches?launch_year=2020')
     .json<ServerLaunchResponse[]>()
+    
     const launches: LaunchType[] = data.map((item) => {
       return {
         patch: item.links?.mission_patch,
@@ -76,9 +77,11 @@ function App() {
 
   const handleModalOpen = (name: string) => {
     const currentLaunchObj = launches.find(item => item.name === name)
-
-    dispatch({type: 'setCurrentLaunch', payload: currentLaunchObj})
-    handleModalSwitch()
+    
+    if (currentLaunchObj) {
+      dispatch({type: 'setCurrentLaunch', payload: currentLaunchObj})
+      handleModalSwitch()
+    }
   }
 
   return (
@@ -94,7 +97,7 @@ function App() {
         })}   
       </div>
       
-      {showModal && <LaunchModal onClick={handleModalSwitch} patch={currentLaunch.patch} name={currentLaunch.name} rocket={currentLaunch.rocket} details={currentLaunch.details} /> }
+      {showModal && currentLaunch && <LaunchModal onClick={handleModalSwitch} patch={currentLaunch.patch} name={currentLaunch.name} rocket={currentLaunch.rocket} details={currentLaunch.details} /> }
       </div>}
       
     </MantineProvider>

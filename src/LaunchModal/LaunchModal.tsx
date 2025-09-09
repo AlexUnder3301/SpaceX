@@ -3,10 +3,10 @@ import { createPortal } from 'react-dom';
 import dummyPatch from '../assets/dummy-patch.svg'
 
 interface LaunchModalProps {
-    patch: string,
+    patch: string | null,
     name: string,
     rocket: string,
-    details: string,
+    details: string | null,
     onClick: () => void
 }
 

@@ -5,7 +5,7 @@ import dummyPatch from '../assets/dummy-patch.svg'
 interface LaunchCardProps {
     name: string,
     rocketName: string,
-    patch: string,
+    patch: string | null,
     handleModalOpen: (name: string) => void
 }
 
