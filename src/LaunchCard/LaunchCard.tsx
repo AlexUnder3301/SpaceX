@@ -1,7 +1,6 @@
 import styles from './style.module.scss'
 import { Card, Button } from '@mantine/core'
 import dummyPatch from '../assets/dummy-patch.svg'
-
 interface LaunchCardProps {
     name: string,
     rocketName: string,

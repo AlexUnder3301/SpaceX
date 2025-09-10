@@ -7,7 +7,6 @@ import ky from 'ky'
 import '@mantine/core/styles.css';
 import type { ReducerActionType, LaunchType, StateType, ServerLaunchResponse} from './types'
 
-
 const reducer = (state: StateType, {type, payload}: ReducerActionType) => {
   switch (type) {
     case 'setShowModal':
@@ -48,8 +47,6 @@ const initialState = {
   error: false
 }
 
-
-
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState)
   const { currentLaunch, showModal, launches, isLoading, error } = state
@@ -83,8 +80,6 @@ function App() {
     getData()
   }, [])
   
-
-
   const handleModalSwitch = () => {
     dispatch({type: 'setShowModal', payload: !showModal})
   }
@@ -126,8 +121,6 @@ function App() {
        )}
       
     </MantineProvider>
-      
-    
   )
 }
 
