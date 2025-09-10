@@ -1,5 +1,6 @@
 import styles from './style.module.scss'
 import { createPortal } from 'react-dom';
+import { memo } from 'react';
 import dummyPatch from '../assets/dummy-patch.svg'
 
 interface LaunchModalProps {
@@ -19,10 +20,12 @@ const Portal = ({ children }: PortalProps) => {
     return portalRoot ? createPortal(children, portalRoot) : null
 }
 
+const MemoizedPortal = memo(Portal)
+
 
 const LaunchModal = ({ patch, name, rocket, details, onClick }: LaunchModalProps) => {
     return (
-        <Portal>
+        <MemoizedPortal>
             <div className={styles['modal-overlay']}>
                 <div className={styles['launch-modal']}>
                     <div className={styles['modal-header']}>
@@ -44,7 +47,7 @@ const LaunchModal = ({ patch, name, rocket, details, onClick }: LaunchModalProps
                     </div>
                 </div>
             </div>
-        </Portal>
+        </MemoizedPortal>
     )
 }
 

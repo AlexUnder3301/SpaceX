@@ -53,3 +53,9 @@ h1, h2, h3, ol, ul, body, html, p {
   gap: 16px;
 
 }
+
+.retry-button {
+  background-color: lightgray;
+  margin-top: 16px;
+  border: 2px solid black
+}

@@ -27,7 +27,7 @@ describe('App', () => {
 
   it('renders loading state initially', () => {
     render(<App />)
-    expect(screen.getByText('ЗАГРУЗКА')).toBeInTheDocument()
+    expect(screen.getByText('Loading...')).toBeInTheDocument()
   })
 
   it('renders SpaceX header', async () => {

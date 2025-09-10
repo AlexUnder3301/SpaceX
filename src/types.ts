@@ -10,7 +10,8 @@ export interface StateType {
     currentLaunch: LaunchType | null,
     showModal: boolean,
     launches: LaunchType[],
-    isLoading: boolean
+    isLoading: boolean,
+    error: boolean
 }
 
 
@@ -18,7 +19,8 @@ export type ReducerActionType =
   | { type: 'setShowModal'; payload: boolean }
   | { type: 'setCurrentLaunch'; payload: LaunchType | null }
   | { type: 'setLaunches'; payload: LaunchType[] }
-  | { type: 'setIsLoading'; payload: boolean };
+  | { type: 'setIsLoading'; payload: boolean }
+  | { type: 'setError'; payload: boolean }
 
 export interface ServerLaunchResponse {
   mission_name: string;
