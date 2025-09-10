@@ -22,7 +22,7 @@ const Portal = ({ children }: PortalProps) => {
 
 const LaunchModal = ({ patch, name, rocket, details, onClick }: LaunchModalProps) => {
     return (
-        <Portal >
+        <Portal>
             <div className={styles['modal-overlay']}>
                 <div className={styles['launch-modal']}>
                     <div className={styles['modal-header']}>
