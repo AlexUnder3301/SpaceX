@@ -1,4 +1,4 @@
-import { useEffect, useReducer, memo } from 'react'
+import { useEffect, useReducer, memo, useCallback } from 'react'
 import LaunchCard from './LaunchCard/LaunchCard'
 import LaunchModal from './LaunchModal/LaunchModal'
 import { MantineProvider } from '@mantine/core'
@@ -52,7 +52,7 @@ function App() {
   const { currentLaunch, showModal, launches, isLoading, error } = state
   const MemoizedLaunchCard = memo(LaunchCard);
 
-  const getData = async () => {
+const getData = useCallback(async () => {
     try {
       const data = await ky.get('https://api.spacexdata.com/v3/launches?launch_year=2020')
       .json<ServerLaunchResponse[]>()
@@ -67,18 +67,18 @@ function App() {
       }
     })
 
-      dispatch({type: 'setLaunches', payload: launches})
-      dispatch({type: 'setError', payload: false})
-      dispatch({type: 'setIsLoading', payload: false})
-    } catch {
-      dispatch({type: 'setIsLoading', payload: false})
-      dispatch({type: 'setError', payload: true})
-    }
-  }
+        dispatch({type: 'setLaunches', payload: launches})
+        dispatch({type: 'setError', payload: false})
+        dispatch({type: 'setIsLoading', payload: false})
+      } catch {
+        dispatch({type: 'setIsLoading', payload: false})
+        dispatch({type: 'setError', payload: true})
+      }
+    }, [])
 
   useEffect(() => {
     getData()
-  }, [])
+  }, [getData])
   
   const handleModalSwitch = () => {
     dispatch({type: 'setShowModal', payload: !showModal})
